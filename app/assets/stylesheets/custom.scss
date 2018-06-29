@@ -23,7 +23,10 @@ textarea {
 .center h1 {
   margin-bottom: 10px;
 }
-
+.timestamp {
+  color: $gray-light;
+  display: block;
+}
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -255,9 +258,9 @@ input {
   }
 }
 
-/* microposts */
+/* posts */
 
-.microposts {
+.posts {
   list-style: none;
   padding: 0;
   li {
@@ -268,6 +271,9 @@ input {
     margin-top: 5em;
     padding-top: 0;
   }
+  .timestamp {
+    margin-left: 60px;
+  }
   .content {
     display: block;
     margin-left: 60px;
@@ -275,11 +281,6 @@ input {
       display: block;
       padding: 5px 0;
     }
-  }
-  .timestamp {
-    color: $gray-light;
-    display: block;
-    margin-left: 60px;
   }
   .gravatar {
     float: left;
@@ -301,3 +302,6 @@ span.picture {
     border: 0;
   }
 }
+
+/* comment */
+
