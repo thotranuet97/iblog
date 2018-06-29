@@ -5,7 +5,7 @@ default: &default
   host: localhost
   database: iblog
   username: root
-  password: "12345678"
+  password: "123456"
 development:
   <<: *default
 
