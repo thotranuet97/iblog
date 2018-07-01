@@ -1,12 +1,16 @@
 
-<ol class="posts">
-  <%= render @post %>
-</ol>
-<h3>Comments</h3>
-<div  id="comment_form">
-	<%= render @comments %>
+<div >
+  <ol class="posts">
+    <%= render @post %>
+  </ol>
+  <h3>Comments</h3>
+  <div  id="comment_form">
+    <%= render @comments %>
+  </div>
+  <% if ((current_user == @post.user) || current_user.following?(@post.user)) %>
+    <%= render 'comments/form' %>
+  <% end %>
 </div>
-<%= render 'comments/form' %>
 
 
    

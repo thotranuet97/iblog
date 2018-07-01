@@ -1,38 +1,40 @@
-
 <div class="comment" id="comment<%= comment.id %>">
   <div class="show-comment">
     <span class="user"><strong>
       <%= link_to comment.user.name, comment.user %></strong>
     </span>
-    <span class="content"><%= comment.content %></span>
-    </br>
+    <span class="content"><%= comment.content %></span></br>    
     <span class="timestamp">
       <% if current_user?(comment.user) %>
+      <%= link_to 'Reply', new_comment_path(comment.id) %> .
+      <a class="edit-comment"> Edit </a> . 
       <%= link_to 'Delete', comment_path(comment), method: :delete,
-      data: { confirm: 'Are you sure?' } %> . 
-      <a class="edit-comment"> Edit </a>
-      . <%= time_ago_in_words(comment.created_at) %> ago.
+      data: { confirm: 'Are you sure?' }, remote: true %> .      
+      <%= time_ago_in_words(comment.created_at) %> ago.
       <% end %>
+
     </span></br>
   </div>
-  <% if current_user == comment.user %>
-    <%= form_for(comment, remote: true) do |f| %>
-      <%= render 'shared/error_messages', object: comment %>
-      <%= f.hidden_field :post_id, value: comment.post.id %>
-      <%= f.hidden_field :user_id, value: comment.user.id %>
-
-      <div class="field">
-        <%= f.label :user_name, comment.user.name %>
-      </div>
-
-      <div class="field row">
-        <div class="col-sm-10">
-          <%= f.text_area :content%>
+  <% if (current_user == comment.user) %>
+    <div id="edit_comment_form">  
+      <%= form_for(comment, remote: true) do |f| %>
+        <%= render 'shared/error_messages', object: comment %>
+        <%= f.hidden_field :id, value: comment.id %>
+        <%= f.hidden_field :post_id, value: comment.post.id %>
+        <%= f.hidden_field :user_id, value: comment.user.id %>
+        <div class="field">
+          <%= f.label :user_name, comment.user.name %>
         </div>
-        <div class="col-sm-2">
-          <%= f.submit "Create comment", class: "btn btn-primary" %>
+        <div class="field row">
+          <div class="col-sm-10">
+            <%= f.text_area :content%>
+          </div>
+          <div class="col-sm-2">
+            <%= f.submit "Edit comment", class: "btn btn-primary" %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   <% end %>
+
 </div>

@@ -37,6 +37,7 @@ gem 'bootstrap-will_paginate'
 gem 'faker'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'closure_tree'
 
 
 # Use Capistrano for deployment

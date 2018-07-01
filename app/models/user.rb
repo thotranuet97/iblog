@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_tree order: 'created_at DESC'
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :active_relationships,  class_name:  "Relationship",

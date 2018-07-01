@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def new
-    @comment = Comment.new
+    @comment = Comment.new(parent_id: params[:parent_id])
   end
 
   def show
@@ -31,7 +31,6 @@ class CommentsController < ApplicationController
       format.js
     end
   end
-
 
   def update
     @comment = Comment.find(params[:id])

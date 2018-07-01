@@ -1,0 +1,13 @@
+I"$(function() {
+  $(document).ready(function() {
+    $('.comment_form form').hide();
+    $('.edit-comment').click(function() {
+      $(this).closest('.comment').find('.show-comment').hide();
+      return $(this).closest('.comment').find('form').show();
+    });
+  });
+
+  return;
+
+}).call(this);
+:ET
