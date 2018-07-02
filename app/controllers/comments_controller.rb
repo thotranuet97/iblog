@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def new
-    @comment = Comment.new(parent_id: params[:parent_id])
+    @comment = Comment.new(comment_params)
   end
 
   def show
@@ -18,6 +18,8 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to post_path(@comment.post_id), notice: 'Comment was successfully created.' }
         format.js
+      else
+        render 'new'
       end
     end
   end

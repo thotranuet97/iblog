@@ -1,10 +1,10 @@
 <%= form_for(@post) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_field :title, placeholder: "Your title..." %>
+  <div class="field" autofocus>
+    <%= f.text_field :title, placeholder: "Your title...", class: "form-group form-control" %>
   </div>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new post..." %>
+    <%= f.text_area :content, placeholder: "Compose new post...", class: "form-group form-control"%>
   </div>
   <span class="picture">
     <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>

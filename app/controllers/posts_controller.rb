@@ -23,6 +23,11 @@ class PostsController < ApplicationController
     @comments = @post.comments.all
     @comment = @post.comments.build
   end
+
+  def index
+    @posts = Post.where("title LIKE ?", "%#{params[:search]}%").or(Post.where("content LIKE ?", "%#{params[:search]}%"))
+    .paginate(page: params[:page], per_page: 10)
+  end
     
 
 
