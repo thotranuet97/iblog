@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :replies, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :post_likes, through: :likes, source: :post
   has_many :active_relationships,  class_name:  "Relationship",
                                    foreign_key: "follower_id",
                                    dependent:   :destroy
@@ -104,7 +106,23 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+  
+  #Like a post.
+  def like(post)
+    # likes << post.like
+    likes.create post: post
+  end 
 
+  #Unlike a post.
+  def unlike(post)
+
+    likes.find_by(post_id: post.id).destroy
+  end
+
+  # Returns true if the current user is like the post.
+  def like?(post)
+    likes.map(&:post_id).include?(post.id)
+  end
 
   private
 

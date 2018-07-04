@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180702122013) do
+ActiveRecord::Schema.define(version: 20180704122729) do
 
   create_table "comment_hierarchies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "ancestor_id", null: false
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20180702122013) do
     t.integer "parent_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -79,6 +88,8 @@ ActiveRecord::Schema.define(version: 20180702122013) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "comments"
   add_foreign_key "replies", "users"

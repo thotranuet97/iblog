@@ -1,0 +1,9 @@
+  <div id="like_form">
+  <% if logged_in? %>
+    <% if current_user.like?(@post) %>
+      <%= render 'unlike' %>
+    <% else %>
+    <%= render 'like' %>
+    <% end %>
+  <% end %>
+  </div>

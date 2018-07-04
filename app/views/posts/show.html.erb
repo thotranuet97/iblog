@@ -3,6 +3,9 @@
   <ol class="posts">
     <%= render @post %>
   </ol>
+  <%= render 'like_form' %>
+  <div id="like_count"><%= @post.likes.count %> likes </div>
+
   <h3>Comments</h3>
   <div  id="comment_form">
   <%= render @comments %>

@@ -1,0 +1,2 @@
+$("#like_form").html("<%= escape_javascript(render('posts/like')) %>");
+$("#like_count").html('<%= @post.likes.count %> likes');
