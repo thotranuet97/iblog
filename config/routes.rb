@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'replies/create'
+
+  get 'replies/destroy'
+
   resources :posts
   get 'comment/new'
 
@@ -24,19 +28,13 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,          only: [:create, :destroy, :show]
-  resources :posts do
-    resources :comments #-> url.com/projects/:project_id/comments/:id
-  end 
   resources :users do
     member do
       get :following, :followers
     end
   end
   resources :comments
-  resources :comments do
-    resources :comments
-  end 
   resources :relationships,       only: [:create, :destroy]
-
+  resources :replies
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

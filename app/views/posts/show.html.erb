@@ -11,6 +11,14 @@
     <%= render 'comments/form' %>
   <% end %>
 </div>
-
+<script>
+  $(document).ready(function() {
+    $('#comment_form form').hide()
+    $('.edit-comment').click(function() {
+      $(this).closest('.comment').find('.show-comment').hide()
+      $(this).closest('.comment').find('form').show()
+    });
+  });
+</script>
 
    
